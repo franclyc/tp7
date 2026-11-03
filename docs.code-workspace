@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "docs"
+		},
+		{
+			"path": "tp7_grupo5"
+		},
+		{
+			"path": ".github"
+		},
+		{
+			"path": ".vscode"
+		}
+	],
+	"settings": {}
+}
