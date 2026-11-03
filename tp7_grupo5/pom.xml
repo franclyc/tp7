@@ -1,92 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Indica que el archivo usa XML 1.0 y codificación UTF-8. -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!-- Abre el proyecto y declara el espacio de nombres de Maven. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- xmlns:xsi permite indicar el esquema XML. -->
+  <!-- xsi:schemaLocation señala el esquema que define la estructura del POM. -->
+
+  <!-- Indica la versión del modelo POM utilizado por Maven. -->
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- Identifica al grupo u organización del proyecto. -->
   <groupId>ar.edu.unju.escmi</groupId>
+
+  <!-- Identifica el proyecto dentro de ese grupo. -->
   <artifactId>tp7_grupo5</artifactId>
+
+  <!-- Define la versión; SNAPSHOT indica una versión en desarrollo. -->
   <version>1.0-SNAPSHOT</version>
 
+  <!-- Define el nombre descriptivo del proyecto. -->
   <name>tp7_grupo5</name>
+
+  <!-- Indica el sitio web del proyecto; esta URL es de ejemplo. -->
   <url>http://www.example.com</url>
 
+  <!-- Abre la sección de propiedades de configuración. -->
   <properties>
+
+    <!-- Establece UTF-8 como codificación de los archivos del proyecto. -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
+
+    <!-- Permite utilizar las características del lenguaje de Java 17. -->
+    <maven.compiler.source>17</maven.compiler.source>
+
+    <!-- Genera archivos .class destinados a Java 17. -->
+    <maven.compiler.target>17</maven.compiler.target>
+
   </properties>
+  <!-- Finaliza la sección de propiedades. -->
 
+  <!-- Abre la lista de bibliotecas que necesita el proyecto. -->
   <dependencies>
+
+    <!-- Declara una dependencia para realizar pruebas con JUnit. -->
     <dependency>
+
+      <!-- Identifica al grupo que publica JUnit. -->
       <groupId>junit</groupId>
+
+      <!-- Indica la biblioteca que se utilizará. -->
       <artifactId>junit</artifactId>
+
+      <!-- Selecciona la versión 4.11 de JUnit. -->
       <version>4.11</version>
+
+      <!-- Hace que esta biblioteca esté disponible para las pruebas. -->
       <scope>test</scope>
-    </dependency>
 
-    <dependency>
-      <groupId>jakarta.persistence</groupId>
-      <artifactId>jakarta.persistence-api</artifactId>
-      <version>3.2.0</version>
     </dependency>
+    <!-- Finaliza la dependencia de JUnit. -->
+
+    <!-- Declara la API de persistencia JPA. -->
     <dependency>
+
+      <!-- Identifica al grupo que publica esta API. -->
+      <groupId>javax.persistence</groupId>
+
+      <!-- Incluye interfaces y anotaciones como EntityManager y @Entity. -->
+      <artifactId>javax.persistence-api</artifactId>
+
+      <!-- Selecciona la versión 2.2 de JPA. -->
+      <version>2.2</version>
+
+    </dependency>
+    <!-- Finaliza la dependencia de la API de JPA. -->
+
+    <!-- Declara Hibernate como implementación de JPA. -->
+    <dependency>
+
+      <!-- Identifica al grupo que publica Hibernate. -->
       <groupId>org.hibernate</groupId>
+
+      <!-- Incluye el núcleo de Hibernate para gestionar la persistencia. -->
       <artifactId>hibernate-core</artifactId>
-      <version>5.6.7.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.30</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
-      <version>5.6.7.Final</version>
-    </dependency>
-  </dependencies>
 
+      <!-- Selecciona la versión 5.6.7.Final de Hibernate. -->
+      <version>5.6.7.Final</version>
+
+    </dependency>
+    <!-- Finaliza la dependencia del núcleo de Hibernate. -->
+
+    <!-- Declara el controlador JDBC para conectarse a MySQL. -->
+    <dependency>
+
+      <!-- Identifica al grupo de esta versión del conector. -->
+      <groupId>mysql</groupId>
+
+      <!-- Incluye el controlador que permite comunicarse con MySQL. -->
+      <artifactId>mysql-connector-java</artifactId>
+
+      <!-- Selecciona la versión 8.0.30 del controlador. -->
+      <version>8.0.30</version>
+
+    </dependency>
+    <!-- Finaliza la dependencia del conector de MySQL. -->
+
+    <!-- Declara el antiguo módulo de integración de Hibernate con JPA. -->
+    <!-- En Hibernate 5.6 es redundante: sus funciones están en hibernate-core. -->
+    <dependency>
+
+      <!-- Identifica al grupo que publica el módulo. -->
+      <groupId>org.hibernate</groupId>
+
+      <!-- Indica el módulo hibernate-entitymanager. -->
+      <artifactId>hibernate-entitymanager</artifactId>
+
+      <!-- Selecciona la misma versión que el núcleo de Hibernate. -->
+      <version>5.6.7.Final</version>
+
+    </dependency>
+    <!-- Finaliza la dependencia de hibernate-entitymanager. -->
+
+  </dependencies>
+  <!-- Finaliza la lista de dependencias. -->
+
+  <!-- Abre la configuración de construcción del proyecto. -->
   <build>
+
+    <!-- Define versiones y configuraciones de plugins. -->
+    <!-- No ejecuta todos los plugins por sí solo: se aplican cuando se utilizan. -->
     <pluginManagement>
+
+      <!-- Abre la lista de plugins administrados. -->
       <plugins>
+
+        <!-- Configura el plugin de limpieza. -->
         <plugin>
+
+          <!-- Elimina archivos generados, normalmente la carpeta target. -->
           <artifactId>maven-clean-plugin</artifactId>
+
+          <!-- Establece la versión del plugin. -->
           <version>3.1.0</version>
+
         </plugin>
+        <!-- Finaliza la configuración del plugin de limpieza. -->
+
+        <!-- Configura el plugin que procesa recursos. -->
         <plugin>
+
+          <!-- Copia recursos, como persistence.xml, al directorio de salida. -->
           <artifactId>maven-resources-plugin</artifactId>
+
+          <!-- Establece la versión del plugin. -->
           <version>3.0.2</version>
+
         </plugin>
+        <!-- Finaliza la configuración del plugin de recursos. -->
+
+        <!-- Configura el plugin de compilación. -->
         <plugin>
+
+          <!-- Compila los archivos Java y genera archivos .class. -->
           <artifactId>maven-compiler-plugin</artifactId>
+
+          <!-- Establece la versión del plugin. -->
           <version>3.8.0</version>
+
         </plugin>
+        <!-- Finaliza la configuración del plugin de compilación. -->
+
+        <!-- Configura el plugin de pruebas unitarias. -->
         <plugin>
+
+          <!-- Ejecuta las pruebas durante la fase test de Maven. -->
           <artifactId>maven-surefire-plugin</artifactId>
+
+          <!-- Establece la versión del plugin. -->
           <version>2.22.1</version>
+
         </plugin>
+        <!-- Finaliza la configuración del plugin de pruebas. -->
+
+        <!-- Configura el plugin que genera el archivo JAR. -->
         <plugin>
+
+          <!-- Empaqueta las clases y los recursos del proyecto en un JAR. -->
           <artifactId>maven-jar-plugin</artifactId>
+
+          <!-- Establece la versión del plugin. -->
           <version>3.0.2</version>
+
         </plugin>
+        <!-- Finaliza la configuración del plugin de empaquetado. -->
+
+        <!-- Configura el plugin de instalación local. -->
         <plugin>
+
+          <!-- Guarda el artefacto y su POM en el repositorio local de Maven. -->
           <artifactId>maven-install-plugin</artifactId>
+
+          <!-- Establece la versión del plugin. -->
           <version>2.5.2</version>
+
         </plugin>
+        <!-- Finaliza la configuración del plugin de instalación. -->
+
+        <!-- Configura el plugin de publicación en repositorios remotos. -->
         <plugin>
+
+          <!-- Publica el artefacto si se configura un repositorio de destino. -->
+          <!-- No es el plugin que sube el código a GitHub. -->
           <artifactId>maven-deploy-plugin</artifactId>
+
+          <!-- Establece la versión del plugin. -->
           <version>2.8.2</version>
+
         </plugin>
+        <!-- Finaliza la configuración del plugin de publicación. -->
+
+        <!-- Configura el plugin de generación del sitio del proyecto. -->
         <plugin>
+
+          <!-- Genera un sitio con documentación e informes de Maven. -->
           <artifactId>maven-site-plugin</artifactId>
+
+          <!-- Establece la versión del plugin. -->
           <version>3.7.1</version>
+
         </plugin>
+        <!-- Finaliza la configuración del plugin del sitio. -->
+
+        <!-- Configura el plugin de informes sobre el proyecto. -->
         <plugin>
+
+          <!-- Proporciona informes con información general del proyecto. -->
           <artifactId>maven-project-info-reports-plugin</artifactId>
+
+          <!-- Establece la versión del plugin. -->
           <version>3.0.0</version>
+
         </plugin>
+        <!-- Finaliza la configuración del plugin de informes. -->
+
       </plugins>
+      <!-- Finaliza la lista de plugins. -->
+
     </pluginManagement>
+    <!-- Finaliza la administración de plugins. -->
+
   </build>
+  <!-- Finaliza la configuración de construcción. -->
+
 </project>
+<!-- Finaliza el proyecto Maven. -->
